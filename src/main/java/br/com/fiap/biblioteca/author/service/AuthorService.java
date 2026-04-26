@@ -44,9 +44,6 @@ public class AuthorService {
     }
 
     public void delete(Long id){
-        Author author = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Autor não encontrado"));
-
-        repository.delete(author);
+        repository.deleteById(id);
     }
 }
