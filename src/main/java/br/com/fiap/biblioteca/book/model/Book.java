@@ -1,6 +1,7 @@
 package br.com.fiap.biblioteca.book.model;
 
 import br.com.fiap.biblioteca.author.model.Author;
+import br.com.fiap.biblioteca.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,4 +31,8 @@ public class Book {
 
     @ManyToOne
     public Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User user;
 }
