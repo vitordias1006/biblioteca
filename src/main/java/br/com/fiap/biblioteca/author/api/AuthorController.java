@@ -7,10 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/biblioteca")
@@ -20,7 +19,29 @@ public class AuthorController {
     private final AuthorService service;
 
     @PostMapping
-    public ResponseEntity<AuthorResponse> save(@Valid @RequestBody AuthorRequest request){
+    public ResponseEntity<AuthorResponse> create(@Valid @RequestBody AuthorRequest request){
         return new ResponseEntity<>(this.service.create(request)  ,HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<AuthorResponse>> findAll(){
+        return ResponseEntity.ok(service.getAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AuthorResponse> findById(@PathVariable Long id){
+        return ResponseEntity.ok(service.getById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AuthorResponse> update(@PathVariable Long id ,@Valid @RequestBody AuthorRequest request){
+        return ResponseEntity.ok(service.update(request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
