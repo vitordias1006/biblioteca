@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/biblioteca")
+@RequestMapping("/biblioteca/autores")
 @RequiredArgsConstructor
 public class AuthorController {
 
@@ -20,7 +20,7 @@ public class AuthorController {
 
     @PostMapping
     public ResponseEntity<AuthorResponse> create(@Valid @RequestBody AuthorRequest request){
-        return new ResponseEntity<>(this.service.create(request)  ,HttpStatus.CREATED);
+        return  ResponseEntity.ok(service.create(request));
     }
 
     @GetMapping
@@ -35,7 +35,7 @@ public class AuthorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<AuthorResponse> update(@PathVariable Long id ,@Valid @RequestBody AuthorRequest request){
-        return ResponseEntity.ok(service.update(request));
+        return ResponseEntity.ok(service.update(id, request));
     }
 
     @DeleteMapping("/{id}")

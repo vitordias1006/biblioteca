@@ -21,10 +21,7 @@ public record AuthorRequest(
         String nationality,
 
         @NotNull
-        Boolean active,
-
-        List<Book> books
-        ){
+        Boolean active){
 
     public Author toEntity(){
         return Author.builder()
@@ -32,7 +29,6 @@ public record AuthorRequest(
                 .birthDate(birthDate)
                 .nationality(nationality)
                 .active(active)
-                .books(books)
                 .build();
     }
 }

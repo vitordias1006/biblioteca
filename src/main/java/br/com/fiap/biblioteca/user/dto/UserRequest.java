@@ -1,5 +1,6 @@
 package br.com.fiap.biblioteca.user.dto;
 
+import br.com.fiap.biblioteca.book.model.Book;
 import br.com.fiap.biblioteca.user.model.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +13,8 @@ public record UserRequest(
         @NotBlank
         String email,
         @NotNull
-        LocalDate birthDate
+        LocalDate birthDate,
+        String bookTitle
 ) {
     public User toEntity() {
         return User.builder()
