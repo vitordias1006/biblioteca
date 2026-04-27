@@ -1,6 +1,7 @@
 package br.com.fiap.biblioteca.author.dto;
 
 import br.com.fiap.biblioteca.author.model.Author;
+import br.com.fiap.biblioteca.book.dto.BookSimpleResponse;
 import br.com.fiap.biblioteca.book.model.Book;
 
 import java.time.LocalDate;
@@ -12,7 +13,7 @@ public record AuthorResponse (
         LocalDate birthDate,
         String nationality,
         Boolean active,
-        List<Book> books
+        List<BookSimpleResponse> books
 ){
     public static AuthorResponse fromEntity(Author author){
         return new AuthorResponse(
@@ -21,7 +22,12 @@ public record AuthorResponse (
                 author.getBirthDate(),
                 author.getNationality(),
                 author.getActive(),
-                author.getBooks()
+                author.getBooks() == null ? List.of() :
+                author.getBooks().stream()
+                        .map(book -> new BookSimpleResponse(
+                                book.getId(),
+                                book.getTitle()))
+                        .toList()
         );
     }
 }

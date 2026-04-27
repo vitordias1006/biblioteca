@@ -34,8 +34,8 @@ public class AuthorService {
     }
 
     public AuthorResponse getById(Long id){
-        Author author = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Autor não encontrado"));
+        Author author = repository.findByIdWithBooks(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return AuthorResponse.fromEntity(author);
     }

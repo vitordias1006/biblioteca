@@ -2,11 +2,13 @@ package br.com.fiap.biblioteca.user.service;
 
 import br.com.fiap.biblioteca.book.model.Book;
 import br.com.fiap.biblioteca.book.repository.BookRepository;
+import br.com.fiap.biblioteca.user.dto.BookLoanRequest;
 import br.com.fiap.biblioteca.user.dto.BookLoanResponse;
 import br.com.fiap.biblioteca.user.dto.UserRequest;
 import br.com.fiap.biblioteca.user.dto.UserResponse;
 import br.com.fiap.biblioteca.user.model.BookLoan;
 import br.com.fiap.biblioteca.user.model.User;
+import br.com.fiap.biblioteca.user.repository.BookLoanRepository;
 import br.com.fiap.biblioteca.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,8 @@ public class UserService {
 
     private final BookRepository bookRepository;
 
+    private final BookLoanRepository bookLoanRepository;
+
     public UserResponse create(UserRequest request){
         User user = request.toEntity();
         User response = repository.save(user);
@@ -39,7 +43,7 @@ public class UserService {
 
     public UserResponse findById(Long id){
         User user = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return UserResponse.fromEntity(user);
     }
 
@@ -59,13 +63,21 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public BookLoanResponse requestBookLoan(UserRequest request){
-        User user = request.toEntity();
-        Book book = bookRepository.findByTitle(request.bookTitle());
+    public BookLoanResponse requestBookLoan(BookLoanRequest request) {
+        User user = repository.findById(request.userId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+
+        Book book = bookRepository.findByTitle(request.bookTitle())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
+
+        book.setUser(user);
+        bookRepository.save(book);
         BookLoan bookLoan = BookLoan.builder()
                 .user(user)
                 .book(book)
                 .build();
+
+        bookLoanRepository.save(bookLoan);
         return BookLoanResponse.fromEntity(bookLoan);
     }
 

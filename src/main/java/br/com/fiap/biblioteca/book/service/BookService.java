@@ -8,7 +8,9 @@ import br.com.fiap.biblioteca.book.dto.BookResponse;
 import br.com.fiap.biblioteca.book.model.Book;
 import br.com.fiap.biblioteca.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,7 @@ public class BookService {
         Book book = Book.builder()
                 .title(request.title())
                 .publisher(request.publisher())
+                .synopsis(request.synopsis())
                 .releaseDate(request.releaseDate())
                 .author(author)
                 .build();
@@ -44,23 +47,23 @@ public class BookService {
     }
 
     public BookResponse findById(Long id) {
-        Book book = repository.findById(id).orElseThrow(()-> new RuntimeException("Livro não encontrado"));
+        Book book = repository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
         return BookResponse.fromEntity(book);
     }
 
     public BookResponse findByTitle(String title) {
-        Book book = repository.findByTitle(title);
-        return BookResponse.fromEntity(book);
+        return repository.findByTitle(title)
+                .map(BookResponse::fromEntity)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
     }
 
     public BookResponse update(Long id, BookRequest  request) {
-        Book book = Book.builder()
-                .title(request.title())
-                .publisher(request.publisher())
-                .releaseDate(request.releaseDate())
-                .build();
-        Book response = repository.save(book);
-        return BookResponse.fromEntity(response);
+        Book book = repository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
+        book.setTitle(request.title());
+        book.setPublisher(request.publisher());
+        book.setReleaseDate(request.releaseDate());
+        book.setSynopsis(request.synopsis());
+        return BookResponse.fromEntity(repository.save(book));
     }
 
     public void delete(Long id) {

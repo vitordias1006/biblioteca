@@ -1,11 +1,19 @@
 package br.com.fiap.biblioteca.book.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public record BookRequest(
+        @NotBlank
         String title,
-         LocalDate releaseDate,
-         String synopsis,
-         String publisher,
-         Long authorId
+        @NotNull
+        LocalDate releaseDate,
+        @NotBlank
+        String synopsis,
+        @NotBlank
+        String publisher,
+        @NotNull
+        Long authorId
 ) {}

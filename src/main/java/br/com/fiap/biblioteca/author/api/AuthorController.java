@@ -20,7 +20,8 @@ public class AuthorController {
 
     @PostMapping
     public ResponseEntity<AuthorResponse> create(@Valid @RequestBody AuthorRequest request){
-        return  ResponseEntity.ok(service.create(request));
+        AuthorResponse response = service.create(request);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping

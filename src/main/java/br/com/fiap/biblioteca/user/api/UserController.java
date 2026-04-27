@@ -1,5 +1,6 @@
 package br.com.fiap.biblioteca.user.api;
 
+import br.com.fiap.biblioteca.user.dto.BookLoanRequest;
 import br.com.fiap.biblioteca.user.dto.BookLoanResponse;
 import br.com.fiap.biblioteca.user.dto.UserRequest;
 import br.com.fiap.biblioteca.user.dto.UserResponse;
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/alugar-livros")
-    public ResponseEntity<BookLoanResponse> loanBook(@Valid @RequestBody UserRequest request) {
+    public ResponseEntity<BookLoanResponse> loanBook(@Valid @RequestBody BookLoanRequest request) {
         return ResponseEntity.ok(service.requestBookLoan(request));
     }
 

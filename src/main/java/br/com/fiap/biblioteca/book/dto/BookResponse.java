@@ -10,8 +10,8 @@ public record BookResponse(
         LocalDate releaseDate,
         String synopsis,
         String publisher,
-        Long authorId,
-        Long userId
+        String author,
+        String loanedTo
 ) {
     public static BookResponse fromEntity(Book book) {
         return new BookResponse(
@@ -20,8 +20,8 @@ public record BookResponse(
                 book.getReleaseDate(),
                 book.getSynopsis(),
                 book.getPublisher(),
-                book.getAuthor() != null ? book.getAuthor().getId() : null,
-                book.getUser() != null ? book.getUser().getId() : null
+                book.getAuthor().getName(),
+                book.getUser() != null ? book.getUser().getName() : null
         );
     }
 }

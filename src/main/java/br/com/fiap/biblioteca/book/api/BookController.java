@@ -5,6 +5,7 @@ import br.com.fiap.biblioteca.book.dto.BookResponse;
 import br.com.fiap.biblioteca.book.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,8 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<BookResponse> createBook(@Valid @RequestBody BookRequest bookRequest) {
-        return ResponseEntity.ok(bookService.create(bookRequest));
+        BookResponse response = bookService.create(bookRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
