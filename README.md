@@ -167,10 +167,7 @@ A aplicação sobe na porta **8080** por padrão.
 **Exemplo de body — alugar livro:**
 ```json
 {
-  "id": 1,
-  "name": "Ana Silva",
-  "email": "ana.silva@email.com",
-  "birthDate": "1995-03-15",
+  "userId": 1,
   "bookTitle": "Dom Casmurro"
 }
 ```
