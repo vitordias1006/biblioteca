@@ -13,8 +13,7 @@ public record UserRequest(
         @NotBlank
         String email,
         @NotNull
-        LocalDate birthDate,
-        String bookTitle
+        LocalDate birthDate
 ) {
     public User toEntity() {
         return User.builder()

@@ -59,10 +59,12 @@ public class BookService {
 
     public BookResponse update(Long id, BookRequest  request) {
         Book book = repository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
+        Author author = authorRepository.findById(request.authorId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
         book.setTitle(request.title());
         book.setPublisher(request.publisher());
         book.setReleaseDate(request.releaseDate());
         book.setSynopsis(request.synopsis());
+        book.setAuthor(author);
         return BookResponse.fromEntity(repository.save(book));
     }
 
