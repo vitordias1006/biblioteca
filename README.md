@@ -205,11 +205,5 @@ src/main/java/br/com/fiap/biblioteca/
 **Erro de conexão com o banco:**
 Verifique se o MySQL está rodando e se as credenciais em `application.properties` estão corretas.
 
-**Porta 8080 ocupada:**
-Adicione a linha abaixo no `application.properties` para trocar a porta:
-```properties
-server.port=8081
-```
-
 **Tabelas não criadas:**
 Confirme que o banco `biblioteca` existe e que `spring.jpa.hibernate.ddl-auto=update` está no `application.properties`.
