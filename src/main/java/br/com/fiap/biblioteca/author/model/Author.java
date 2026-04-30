@@ -31,6 +31,6 @@ public class Author {
     private Boolean active;
 
     @OneToMany(mappedBy = "author")
-    private List<Book> books = new ArrayList<>();
+    private List<Book> books;
 
 }

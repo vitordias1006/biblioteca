@@ -21,7 +21,13 @@ public record AuthorRequest(
         String nationality,
 
         @NotNull
-        Boolean active){
+        Boolean active,
+
+        List<Book> books){
+
+    public AuthorRequest {
+        books = java.util.Objects.requireNonNullElse(books, List.of());
+    }
 
     public Author toEntity(){
         return Author.builder()
