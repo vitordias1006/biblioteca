@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "7083b550-d66a-4b06-be76-1216f0d4ad1c",
+		"name": "Biblioteca-Diamante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37583138"
+	},
+	"item": [
+		{
+			"name": "CadastrarAutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"autores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AtualizaAutor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"cleito\",\r\n    \"birthDate\": \"1988-06-07\",\r\n    \"active\": true,\r\n    \"nationality\": \"Brasileiro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/autores/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"autores",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscaTodosAutores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"autores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarAutorPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/autores/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"autores",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletarAutor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Schwatz\",\r\n    \"birthDate\": \"1988-06-07\",\r\n    \"active\": true,\r\n    \"nationality\": \"Alemão\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/autores/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"autores",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CadastraLivro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"A Rosa do Povo\",\r\n    \"releaseDate\" : \"1950-02-20\",\r\n    \"synopsis\" : \"O povo e a rosa, a rosa e o povo\",\r\n    \"publisher\" : \"Panini\",\r\n    \"authorId\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AtualizarLivro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"A Rosa do Povo\",\r\n    \"releaseDate\" : \"1950-06-20\",\r\n    \"synopsis\" : \"O povo e a rosa, a rosa e o povo\",\r\n    \"publisher\" : \"Panini\",\r\n    \"authorId\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscaLivros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscaLivroPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarLivroPorTitulo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros/buscar-por-titulo?title=A Rosa do Povo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros",
+						"buscar-por-titulo"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "A Rosa do Povo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarLivros",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/livros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CadastraUsuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Vitor\",\r\n    \"email\" : \"vitor1245@gmail.com\",\r\n    \"birthDate\" : \"2006-10-24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarUsuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AlugarLivro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : 1,\r\n    \"bookTitle\" : \"A Rosa do Povo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/biblioteca/usuarios/alugar-livros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca",
+						"usuarios",
+						"alugar-livros"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
